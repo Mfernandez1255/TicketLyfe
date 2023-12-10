@@ -7,7 +7,7 @@ const ticketApi = api.injectEndpoints({
       provideTags: ["tickets"],
     }),
     getTicket: builder.query({
-      query: (id) => `tickets/${id}`,
+      query: (id) => `/tickets/${id}`,
       provideTags: ["ticket"],
     }),
     postTicket: builder.mutation({
