@@ -4,11 +4,11 @@ const ticketApi = api.injectEndpoints({
   endpoints: {
     getTickets: builder.query({
       query: () => "/tickets",
-      provideTags: ["tickets"],
+      providesTags: ["tickets"],
     }),
     getTicket: builder.query({
-      query: (id) => `tickets/${id}`,
-      provideTags: ["ticket"],
+      query: (id) => `/tickets/${id}`,
+      providesTags: ["ticket"],
     }),
     postTicket: builder.mutation({
       query: (ticket) => ({
