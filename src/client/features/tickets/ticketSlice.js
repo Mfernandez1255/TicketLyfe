@@ -1,7 +1,7 @@
 import api from "../../store/api";
 
 const ticketApi = api.injectEndpoints({
-  endpoints: {
+  endpoints: (builder) => ({
     getTickets: builder.query({
       query: () => "/tickets",
       providesTags: ["tickets"],
@@ -24,7 +24,7 @@ const ticketApi = api.injectEndpoints({
         body: { buyerId },
       }),
     }),
-  },
+  }),
 });
 
 export const {
