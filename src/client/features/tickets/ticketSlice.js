@@ -26,3 +26,10 @@ const ticketApi = api.injectEndpoints({
     }),
   },
 });
+
+export const {
+  useGetTicketsQuery,
+  useGetTicketQuery,
+  usePostTicketMutation,
+  useUpdateTicketMutation,
+} = ticketApi;
