@@ -12,12 +12,14 @@ import Root from "./layout/Root.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TicketList from "./features/tickets/TicketList.jsx";
+import TicketDetails from "./features/tickets/TicketDetails.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     children: [
       { path: "/", element: <TicketList /> },
+      { path: "/ticket/:id", element: <TicketDetails /> },
       { path: "/tasks", element: <Tasks /> },
       { path: "/login", element: <AuthForm /> },
     ],
