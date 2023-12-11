@@ -63,13 +63,13 @@ router.patch("/:id", async (req, res, next) => {
 
     const { buyerId } = req.body;
 
-    const updateOwner = await prisma.ticket.update({
+    const updatedTicket = await prisma.ticket.update({
       where: { id: id },
       data: {
         buyerId: buyerId,
       },
     });
-    res.json(updateOwner);
+    res.json(updatedTicket);
   } catch (err) {
     next(err);
   }
