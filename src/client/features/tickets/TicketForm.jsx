@@ -10,19 +10,23 @@ function TicketForm() {
   const [seatSection, setSeatSection] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [price, setPrice] = useState("");
+  const [sellerId, setSellerId] = useState("");
   const [postTicket] = usePostTicketMutation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const formattedDateTime = dateTime + ":00.000Z";
+
     postTicket({
       eventName,
       location,
-      dateTime,
+      dateTime: formattedDateTime,
       description,
       seatSection,
       imageUrl,
       price,
+      sellerId,
     });
     setEventName("");
     setLocation("");
@@ -31,7 +35,9 @@ function TicketForm() {
     setSeatSection("");
     setImageUrl("");
     setPrice("");
+    setSellerId("");
   };
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -59,7 +65,7 @@ function TicketForm() {
             required
             type="datetime-local"
             value={dateTime}
-            onChange={(e) => setDateTime(e.target.value)}
+            onChange={(e) => new Date(setDateTime(e.target.value))}
           />
         </label>
         <label>
@@ -94,7 +100,7 @@ function TicketForm() {
             required
             type="number"
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={(e) => setPrice(parseInt(e.target.value))}
           />
         </label>
         <button>Create Post</button>
