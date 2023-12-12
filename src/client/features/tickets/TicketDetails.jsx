@@ -10,7 +10,7 @@ function TicketDetails() {
   return (
     <>
       <div>
-        <h1>Event: {ticket.eventName}</h1>
+        <h1>Event Name: {ticket.eventName}</h1>
         <h2>Location: {ticket.location}</h2>
         <h2>Date and Time: {ticket.dateTime}</h2>
         <h3>Description: {ticket.description}</h3>

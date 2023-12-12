@@ -1,7 +1,7 @@
 import React from "react";
 import { useGetTicketsQuery } from "./ticketSlice";
 import TicketCard from "./TicketCard";
-
+import TicketForm from "./TicketForm";
 function TicketList() {
   const { data: tickets, isLoading, isError } = useGetTicketsQuery();
 
@@ -10,9 +10,12 @@ function TicketList() {
 
   return (
     <div className="ticket-list">
-      {tickets.map((ticket) => (
-        <TicketCard key={ticket.id} ticket={ticket} />
-      ))}
+      <TicketForm />
+      <ul>
+        {tickets.map((ticket) => (
+          <TicketCard key={ticket.id} ticket={ticket} />
+        ))}
+      </ul>
     </div>
   );
 }
