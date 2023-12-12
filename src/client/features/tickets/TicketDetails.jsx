@@ -15,6 +15,7 @@ function TicketDetails() {
         <h2>Date and Time: {ticket.dateTime}</h2>
         <h3>Description: {ticket.description}</h3>
         <p>Seat/Section: {ticket.seatSection}</p>
+        <h1>Seller Id: {ticket.sellerId}</h1>
         <h2>Buy Now Price: ${ticket.price}</h2>
       </div>
     </>

@@ -38,6 +38,7 @@ router.post("/", async (req, res, next) => {
       seatSection,
       imageUrl,
       price,
+      sellerId,
     } = req.body;
 
     const sellTicket = await prisma.ticket.create({
@@ -49,6 +50,7 @@ router.post("/", async (req, res, next) => {
         seatSection: seatSection,
         imageUrl: imageUrl,
         price: price,
+        sellerId: { connect: { id: sellerId } },
       },
     });
     res.json(sellTicket);

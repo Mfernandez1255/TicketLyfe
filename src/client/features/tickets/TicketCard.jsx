@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./Styling/TicketCard.less";
 
 function TicketCard({ ticket }) {
   const navigate = useNavigate();
@@ -17,8 +18,12 @@ function TicketCard({ ticket }) {
       <p>Location: {ticket.location}</p>
       <p>Date & Time: {ticket.dateTime}</p>
       <p>Price: ${ticket.price}</p>
-      <button onClick={handleViewDetails}> See Details </button>
-      <button onClick={handleBuy}>Buy Ticket</button>
+      <div className="details-button">
+        <button onClick={handleViewDetails}> See Details </button>
+      </div>
+      <div className="buy-button">
+        <button onClick={handleBuy}>Buy Ticket</button>
+      </div>
     </div>
   );
 }
