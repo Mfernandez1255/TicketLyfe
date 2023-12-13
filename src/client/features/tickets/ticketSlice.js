@@ -24,6 +24,12 @@ const ticketApi = api.injectEndpoints({
         body: { buyerId },
       }),
     }),
+    deleteTicket: builder.mutation({
+      query: ({ id }) => ({
+        url: `/tickets/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 export const {
@@ -31,4 +37,5 @@ export const {
   useGetTicketQuery,
   usePostTicketMutation,
   useUpdateTicketMutation,
+  useDeleteTicketMutation,
 } = ticketApi;

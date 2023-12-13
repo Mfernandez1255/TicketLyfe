@@ -76,3 +76,16 @@ router.patch("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const id = +req.params.id;
+
+    const deletedTicket = await prisma.ticket.delete({
+      where: { id: id },
+    });
+    res.json(deletedTicket);
+  } catch (err) {
+    next(err);
+  }
+});

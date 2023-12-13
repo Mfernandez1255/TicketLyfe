@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useGetTicketQuery } from "./ticketSlice";
+import "./Styling/TicketDetails.less";
 
 function TicketDetails() {
   const { id } = useParams();
@@ -9,7 +10,7 @@ function TicketDetails() {
 
   return (
     <>
-      <div>
+      <div className="details">
         <h1>Event: {ticket.eventName}</h1>
         <h2>Location: {ticket.location}</h2>
         <h2>Date and Time: {ticket.dateTime}</h2>
