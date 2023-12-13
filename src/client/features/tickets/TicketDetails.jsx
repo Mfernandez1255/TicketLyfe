@@ -1,11 +1,18 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useGetTicketQuery } from "./ticketSlice";
 import "./Styling/TicketDetails.less";
+import { useDeleteTicketMutation } from "./ticketSlice";
 
 function TicketDetails() {
   const { id } = useParams();
   const { data: ticket, isLoading } = useGetTicketQuery(id);
+  const navigate = useNavigate();
 
+  const [deleteTicket] = useDeleteTicketMutation();
+  const handleDelete = () => {
+    deleteTicket({ id });
+    navigate("/");
+  };
   if (isLoading) return <div>Loading . . .</div>;
 
   return (
@@ -18,6 +25,7 @@ function TicketDetails() {
         <p>Seat/Section: {ticket.seatSection}</p>
         <h1>Seller Id: {ticket.sellerId}</h1>
         <h2>Buy Now Price: ${ticket.price}</h2>
+        <button onClick={handleDelete}> Remove post </button>
       </div>
     </>
   );

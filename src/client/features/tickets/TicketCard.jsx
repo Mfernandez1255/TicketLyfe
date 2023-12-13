@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Styling/TicketCard.less";
+import { useDeleteTicketMutation } from "./ticketSlice";
 
 function TicketCard({ ticket }) {
   const navigate = useNavigate();
@@ -8,6 +9,8 @@ function TicketCard({ ticket }) {
   const handleViewDetails = () => {
     navigate(`/ticket/${ticket.id}`);
   };
+
+  const [deleteTicket] = useDeleteTicketMutation();
 
   const handleBuy = async () => {};
 
@@ -23,6 +26,9 @@ function TicketCard({ ticket }) {
       </div>
       <div className="buy-button">
         <button onClick={handleBuy}>Buy Ticket</button>
+      </div>
+      <div>
+        <button onClick={deleteTicket}> Remove post </button>{" "}
       </div>
     </div>
   );

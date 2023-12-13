@@ -82,7 +82,9 @@ router.delete("/:id", async (req, res, next) => {
     const id = +req.params.id;
 
     const deletedTicket = await prisma.ticket.delete({
-      where: { id: id },
+      where: {
+        id: id,
+      },
     });
     res.json(deletedTicket);
   } catch (err) {

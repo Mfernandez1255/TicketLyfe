@@ -29,6 +29,7 @@ const ticketApi = api.injectEndpoints({
         url: `/tickets/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["ticket", "tickets"],
     }),
   }),
 });
