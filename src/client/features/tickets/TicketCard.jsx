@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Styling/TicketCard.less";
+import { useDeleteTicketMutation } from "./ticketSlice";
 
 function TicketCard({ ticket }) {
   const navigate = useNavigate();

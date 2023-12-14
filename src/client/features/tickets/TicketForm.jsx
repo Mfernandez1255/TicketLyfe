@@ -11,7 +11,7 @@ function TicketForm() {
   const [seatSection, setSeatSection] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [price, setPrice] = useState("");
-  const [sellerId, setSellerId] = useState("");
+  const [seller, setSeller] = useState("");
   const [postTicket] = usePostTicketMutation();
 
   const handleSubmit = (e) => {
@@ -27,7 +27,7 @@ function TicketForm() {
       seatSection,
       imageUrl,
       price,
-      sellerId,
+      seller,
     });
     setEventName("");
     setLocation("");
@@ -36,7 +36,7 @@ function TicketForm() {
     setSeatSection("");
     setImageUrl("");
     setPrice("");
-    setSellerId("");
+    setSeller("");
   };
 
   return (
