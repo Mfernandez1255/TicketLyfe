@@ -10,8 +10,6 @@ function TicketCard({ ticket }) {
     navigate(`/ticket/${ticket.id}`);
   };
 
-  const [deleteTicket] = useDeleteTicketMutation();
-
   const handleBuy = async () => {};
 
   return (
@@ -26,9 +24,6 @@ function TicketCard({ ticket }) {
       </div>
       <div className="buy-button">
         <button onClick={handleBuy}>Buy Ticket</button>
-      </div>
-      <div>
-        <button onClick={deleteTicket}> Remove post </button>{" "}
       </div>
     </div>
   );
