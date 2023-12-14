@@ -4,7 +4,7 @@ const prisma = require("../prisma");
 const router = require("express").Router();
 module.exports = router;
 
-router.get("/", async (res, req, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const users = await prisma.user.findMany();
 
@@ -14,8 +14,9 @@ router.get("/", async (res, req, next) => {
   }
 });
 
-router.get("/:id", async (res, req, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
+    const id = +req.params.id;
     const user = await prisma.user.findUnique({ where: { id } });
 
     res.json(user);
