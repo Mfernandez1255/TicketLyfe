@@ -30,7 +30,7 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    const {
+    let {
       eventName,
       location,
       dateTime,
@@ -38,9 +38,12 @@ router.post("/", async (req, res, next) => {
       seatSection,
       imageUrl,
       price,
-      sellerId,
+      seller,
     } = req.body;
 
+    const id = {
+      connect: { id: (seller = res.locals.user.id) },
+    };
     const sellTicket = await prisma.ticket.create({
       data: {
         eventName: eventName,
@@ -50,7 +53,7 @@ router.post("/", async (req, res, next) => {
         seatSection: seatSection,
         imageUrl: imageUrl,
         price: price,
-        sellerId: { connect: { id: sellerId } },
+        seller: id,
       },
     });
     res.json(sellTicket);
