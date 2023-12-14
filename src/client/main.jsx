@@ -13,6 +13,8 @@ import Root from "./layout/Root.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TicketList from "./features/tickets/TicketList.jsx";
 import TicketDetails from "./features/tickets/TicketDetails.jsx";
+import Users from "./features/users/Users.jsx";
+import UserProfile from "./features/users/UserProfile.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +22,8 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <TicketList /> },
       { path: "/ticket/:id", element: <TicketDetails /> },
+      { path: "/users", element: <Users /> },
+      { path: "/users/:id", element: <UserProfile /> },
       { path: "/tasks", element: <Tasks /> },
       { path: "/login", element: <AuthForm /> },
     ],
