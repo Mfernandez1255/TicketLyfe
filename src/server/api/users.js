@@ -24,3 +24,20 @@ router.get("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+router.get("/:id/sold", async (req, res, next) => {
+  try {
+    const id = +req.params.id;
+    const userSoldTickets = await prisma.user.findUnique({
+      where: {
+        id: id,
+      },
+      include: {
+        selling: true,
+      },
+    });
+    res.json(userSoldTickets);
+  } catch (err) {
+    next(err);
+  }
+});
