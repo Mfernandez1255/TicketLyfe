@@ -1,7 +1,6 @@
 import React from "react";
 import { usePostTicketMutation } from "./ticketSlice";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./Styling/TicketForm.less";
 
 function TicketForm() {
@@ -14,12 +13,13 @@ function TicketForm() {
   const [price, setPrice] = useState("");
   const [seller, setSeller] = useState("");
   const [postTicket, { isLoading }] = usePostTicketMutation();
-  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formattedDateTime = dateTime + ":00.000Z";
     try {
+      const formattedDateTime = new Date(dateTime).toISOString();
+
       await postTicket({
         eventName,
         location,
@@ -39,6 +39,8 @@ function TicketForm() {
       setImageUrl("");
       setPrice("");
       setSeller("");
+
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
@@ -48,7 +50,7 @@ function TicketForm() {
     <>
       <div className="post-div">
         <h1 className="form-title">Create Ticket Posting</h1>
-        <form className="post-form" onSubmit={handleSubmit}>
+        <form className="post-form">
           <label>
             Event Name:
             <input
@@ -73,7 +75,7 @@ function TicketForm() {
               required
               type="datetime-local"
               value={dateTime}
-              onChange={(e) => new Date(setDateTime(e.target.value))}
+              onChange={(e) => setDateTime(e.target.value)}
             />
           </label>
           <label>
@@ -111,7 +113,7 @@ function TicketForm() {
               onChange={(e) => setPrice(parseInt(e.target.value))}
             />
           </label>
-          <button type="submit" disabled={isLoading}>
+          <button type="submit" onClick={handleSubmit} disabled={isLoading}>
             {isLoading ? "Creating . . ." : "Create Post"}
           </button>
         </form>
