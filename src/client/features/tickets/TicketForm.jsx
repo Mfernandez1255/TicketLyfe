@@ -1,6 +1,7 @@
 import React from "react";
 import { usePostTicketMutation } from "./ticketSlice";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Styling/TicketForm.less";
 
 function TicketForm() {
@@ -12,31 +13,35 @@ function TicketForm() {
   const [imageUrl, setImageUrl] = useState("");
   const [price, setPrice] = useState("");
   const [seller, setSeller] = useState("");
-  const [postTicket] = usePostTicketMutation();
-
-  const handleSubmit = (e) => {
+  const [postTicket, { isLoading }] = usePostTicketMutation();
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formattedDateTime = dateTime + ":00.000Z";
+    try {
+      await postTicket({
+        eventName,
+        location,
+        dateTime: formattedDateTime,
+        description,
+        seatSection,
+        imageUrl,
+        price,
+        seller,
+      }).unwrap();
 
-    postTicket({
-      eventName,
-      location,
-      dateTime: formattedDateTime,
-      description,
-      seatSection,
-      imageUrl,
-      price,
-      seller,
-    });
-    setEventName("");
-    setLocation("");
-    setDateTime("");
-    setDescription("");
-    setSeatSection("");
-    setImageUrl("");
-    setPrice("");
-    setSeller("");
+      setEventName("");
+      setLocation("");
+      setDateTime("");
+      setDescription("");
+      setSeatSection("");
+      setImageUrl("");
+      setPrice("");
+      setSeller("");
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -106,7 +111,9 @@ function TicketForm() {
               onChange={(e) => setPrice(parseInt(e.target.value))}
             />
           </label>
-          <button>Create Post</button>
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Creating . . ." : "Create Post"}
+          </button>
         </form>
       </div>
     </>
