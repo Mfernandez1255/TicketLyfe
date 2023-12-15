@@ -39,8 +39,6 @@ function TicketForm() {
       setImageUrl("");
       setPrice("");
       setSeller("");
-
-      window.location.reload();
     } catch (err) {
       console.error(err);
     }
@@ -49,7 +47,7 @@ function TicketForm() {
   return (
     <>
       <div className="post-div">
-        <h1 className="form-title">Create Ticket Posting</h1>
+        <h1>Create Ticket Posting</h1>
         <form className="post-form">
           <label>
             Event Name:

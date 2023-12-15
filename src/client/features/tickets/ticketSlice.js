@@ -8,7 +8,7 @@ const ticketApi = api.injectEndpoints({
     }),
     getTicket: builder.query({
       query: (id) => `/tickets/${id}`,
-      providesTags: ["ticket"],
+      providesTags: ["tickets"],
     }),
     postTicket: builder.mutation({
       query: (ticketData) => ({
@@ -16,6 +16,7 @@ const ticketApi = api.injectEndpoints({
         method: "POST",
         body: ticketData,
       }),
+      invalidatesTags: ["tickets"],
     }),
     updateTicket: builder.mutation({
       query: ({ id, buyerId }) => ({
@@ -23,13 +24,14 @@ const ticketApi = api.injectEndpoints({
         method: "PATCH",
         body: { buyerId },
       }),
+      invalidatesTags: ["tickets"],
     }),
     deleteTicket: builder.mutation({
       query: ({ id }) => ({
         url: `/tickets/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["ticket", "tickets"],
+      invalidatesTags: ["tickets"],
     }),
   }),
 });
