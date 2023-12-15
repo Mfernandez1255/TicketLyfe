@@ -15,12 +15,25 @@ function TicketDetails() {
   };
   if (isLoading) return <div>Loading . . .</div>;
 
+  const formatDateTime = (isoDateTime) => {
+    const dateTime = new Date(isoDateTime);
+    const options = {
+      month: "numeric",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    };
+    return dateTime.toLocaleString("en-US", options);
+  };
+
   return (
     <>
       <div className="details">
         <h1>Event: {ticket.eventName}</h1>
         <h2>Location: {ticket.location}</h2>
-        <h2>Date and Time: {ticket.dateTime}</h2>
+        <p>Date & Time: {formatDateTime(ticket.dateTime)}</p>
         <h3>Description: {ticket.description}</h3>
         <p>Seat/Section: {ticket.seatSection}</p>
         <h1>Seller Id: {ticket.sellerId}</h1>

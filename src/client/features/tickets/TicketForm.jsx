@@ -12,38 +12,45 @@ function TicketForm() {
   const [imageUrl, setImageUrl] = useState("");
   const [price, setPrice] = useState("");
   const [seller, setSeller] = useState("");
-  const [postTicket] = usePostTicketMutation();
+  const [postTicket, { isLoading }] = usePostTicketMutation();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formattedDateTime = dateTime + ":00.000Z";
+    try {
+      const formattedDateTime = new Date(dateTime).toISOString();
 
-    postTicket({
-      eventName,
-      location,
-      dateTime: formattedDateTime,
-      description,
-      seatSection,
-      imageUrl,
-      price,
-      seller,
-    });
-    setEventName("");
-    setLocation("");
-    setDateTime("");
-    setDescription("");
-    setSeatSection("");
-    setImageUrl("");
-    setPrice("");
-    setSeller("");
+      await postTicket({
+        eventName,
+        location,
+        dateTime: formattedDateTime,
+        description,
+        seatSection,
+        imageUrl,
+        price,
+        seller,
+      }).unwrap();
+
+      setEventName("");
+      setLocation("");
+      setDateTime("");
+      setDescription("");
+      setSeatSection("");
+      setImageUrl("");
+      setPrice("");
+      setSeller("");
+
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
     <>
       <div className="post-div">
         <h1 className="form-title">Create Ticket Posting</h1>
-        <form className="post-form" onSubmit={handleSubmit}>
+        <form className="post-form">
           <label>
             Event Name:
             <input
@@ -68,7 +75,7 @@ function TicketForm() {
               required
               type="datetime-local"
               value={dateTime}
-              onChange={(e) => new Date(setDateTime(e.target.value))}
+              onChange={(e) => setDateTime(e.target.value)}
             />
           </label>
           <label>
@@ -106,7 +113,9 @@ function TicketForm() {
               onChange={(e) => setPrice(parseInt(e.target.value))}
             />
           </label>
-          <button>Create Post</button>
+          <button type="submit" onClick={handleSubmit} disabled={isLoading}>
+            {isLoading ? "Creating . . ." : "Create Post"}
+          </button>
         </form>
       </div>
     </>
