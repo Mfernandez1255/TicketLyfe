@@ -2,6 +2,7 @@ import React from "react";
 import SoldTickets from "./UserTicketCard";
 import { useGetSoldTicketsQuery } from "./UserSlice";
 import { useParams } from "react-router-dom";
+import "./Styling/UserSellingList.less";
 
 function UserSellingList() {
   const { id } = useParams();
@@ -12,7 +13,7 @@ function UserSellingList() {
 
   return (
     <>
-      <div>
+      <div className="sellinglist_position">
         <h2>User: {user.username}</h2>
         <ul>
           {user.selling.map((ticket) => (

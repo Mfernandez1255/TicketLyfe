@@ -1,7 +1,6 @@
 import React from "react";
+import "./Styling/UserTicketCard.less";
 function SoldTickets({ ticket }) {
-  console.log(ticket);
-
   const formatDateTime = (isoDateTime) => {
     const dateTime = new Date(isoDateTime);
     const options = {
@@ -15,33 +14,31 @@ function SoldTickets({ ticket }) {
     return dateTime.toLocaleString("en-US", options);
   };
   return (
-    <>
-      <div>
-        <ul>
-          <li>
-            <h3>Event: {ticket.eventName} </h3>
-          </li>
-          <li>
-            <h3>Location: {ticket.location} </h3>
-          </li>
-          <li>
-            <h2>Date & Time: {formatDateTime(ticket.dateTime)}</h2>
-          </li>
-          <li>
-            <h2>Description: {ticket.description} </h2>
-          </li>
-          <li>
-            <p>Seat/Section: {ticket.seatSection} </p>
-          </li>
-          <li>
-            <h2>Seller Id: {ticket.sellerId} </h2>
-          </li>
-          <li>
-            <h2>Price: $ {ticket.price} </h2>
-          </li>
-        </ul>
-      </div>
-    </>
+    <div className="soldtickets_position">
+      <ul className="sold-tickets">
+        <li>
+          <h1>Event: {ticket.eventName} </h1>
+        </li>
+        <li>
+          <h3>Location: {ticket.location} </h3>
+        </li>
+        <li>
+          <p>Date & Time: {formatDateTime(ticket.dateTime)}</p>
+        </li>
+        <li>
+          <p>Description: {ticket.description} </p>
+        </li>
+        <li>
+          <p>Seat/Section: {ticket.seatSection} </p>
+        </li>
+        <li>
+          <p>Seller Id: {ticket.sellerId} </p>
+        </li>
+        <li>
+          <h3>Price: $ {ticket.price} </h3>
+        </li>
+      </ul>
+    </div>
   );
 }
 export default SoldTickets;
