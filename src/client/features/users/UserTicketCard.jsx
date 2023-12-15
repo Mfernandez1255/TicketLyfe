@@ -1,6 +1,19 @@
 import React from "react";
 function SoldTickets({ ticket }) {
   console.log(ticket);
+
+  const formatDateTime = (isoDateTime) => {
+    const dateTime = new Date(isoDateTime);
+    const options = {
+      month: "numeric",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    };
+    return dateTime.toLocaleString("en-US", options);
+  };
   return (
     <>
       <div>
@@ -12,7 +25,7 @@ function SoldTickets({ ticket }) {
             <h3>Location: {ticket.location} </h3>
           </li>
           <li>
-            <h2>Date and Time: {ticket.dateTime}</h2>
+            <h2>Date & Time: {formatDateTime(ticket.dateTime)}</h2>
           </li>
           <li>
             <h2>Description: {ticket.description} </h2>
