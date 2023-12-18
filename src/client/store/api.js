@@ -7,7 +7,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
  */
 const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://main--rainbow-biscotti-325bf8.netlify.app/api",
+    baseUrl: "/api",
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
       if (token) {
