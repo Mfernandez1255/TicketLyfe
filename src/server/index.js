@@ -3,6 +3,7 @@ const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const { createServer: createViteServer } = require("vite");
+const cors = require("cors");
 
 const PORT = process.env.PORT ?? 3000;
 
@@ -22,6 +23,15 @@ const createApp = async () => {
 
   // API routes
   app.use("/api", require("./api"));
+
+  if (process.env.NODE_ENV === "development") {
+    app.use(cors());
+  } else {
+    const corsOptions = {
+      origin: "https://main--rainbow-biscotti-325bf8.netlify.app",
+    };
+    app.use(cors(corsOptions));
+  }
 
   // Serve static HTML in production & Vite dev server in development
   if (
