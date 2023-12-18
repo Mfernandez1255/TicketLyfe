@@ -3,6 +3,8 @@ import { usePostTicketMutation } from "./ticketSlice";
 import { useState } from "react";
 import "./Styling/TicketForm.less";
 
+// funny bone
+
 function TicketForm() {
   const [eventName, setEventName] = useState("");
   const [location, setLocation] = useState("");
