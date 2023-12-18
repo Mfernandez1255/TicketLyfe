@@ -24,7 +24,11 @@ const createApp = async () => {
   app.use("/api", require("./api"));
 
   // Serve static HTML in production & Vite dev server in development
-  if (process.env.NODE_ENV === "production") {
+  if (
+    process.env.NODE_ENV === "production"
+      ? "https://main--rainbow-biscotti-325bf8.netlify.app/api"
+      : "/api"
+  ) {
     app.use(express.static(path.resolve(__dirname, "../../dist/")));
   } else {
     // Pulled from https://vitejs.dev/config/server-options.html#server-middlewaremode
