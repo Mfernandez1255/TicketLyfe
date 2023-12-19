@@ -2,7 +2,7 @@ const prisma = require("../prisma");
 
 const seed = async () => {
   try {
-    await prisma.user.create({
+    await prisma.user.upsert({
       data: {
         firstName: "Maximus",
         lastName: "Prime",
@@ -56,7 +56,7 @@ const seed = async () => {
       },
     });
 
-    await prisma.user.create({
+    await prisma.user.upsert({
       data: {
         firstName: "David",
         lastName: "Andrews",
