@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useGetTicketQuery } from "./ticketSlice";
 import "./Styling/TicketDetails.less";
 import { useDeleteTicketMutation } from "./ticketSlice";
+import TicketUpdate from "./TicketUpdate.jsx";
 
 function TicketDetails() {
   const { id } = useParams();
@@ -38,7 +39,9 @@ function TicketDetails() {
         <p>Seat/Section: {ticket.seatSection}</p>
         <h1>Seller Id: {ticket.sellerId}</h1>
         <h2>Buy Now Price: ${ticket.price}</h2>
-        <button onClick={handleDelete}> Remove post </button>
+        <div className="buy-now">
+          <TicketUpdate />
+        </div>
       </div>
     </>
   );

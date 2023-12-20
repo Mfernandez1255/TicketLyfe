@@ -62,16 +62,23 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.patch("/:id", async (req, res, next) => {
+router.patch("/:id/buy", async (req, res, next) => {
   try {
-    const id = +req.params.id;
+    const ticketId = +req.params.id;
+    const userId = +req.params.sellerId;
 
-    const { buyerId } = req.body;
+    const ticket = await prisma.ticket.findUnique({
+      where: { id: ticketId },
+    });
+
+    if (!ticket) {
+      return res.status(404).json({ error: "Ticket not found" });
+    }
 
     const updatedTicket = await prisma.ticket.update({
-      where: { id: id },
+      where: { id: ticketId },
       data: {
-        buyerId: buyerId,
+        buyerId: userId,
       },
     });
     res.json(updatedTicket);
