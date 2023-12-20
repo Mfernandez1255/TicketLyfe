@@ -20,9 +20,11 @@ const ticketApi = api.injectEndpoints({
     }),
     updateTicket: builder.mutation({
       query: ({ id, buyerId }) => ({
-        url: `/tickets/${id}`,
+        url: `/tickets/${id}/buy`,
         method: "PATCH",
-        body: { buyerId },
+        body: {
+          buyerId: buyerId,
+        },
       }),
       invalidatesTags: ["tickets"],
     }),

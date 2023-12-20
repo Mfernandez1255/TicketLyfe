@@ -24,20 +24,28 @@ function TicketCard({ ticket }) {
     return dateTime.toLocaleString("en-US", options);
   };
 
-  return (
-    <div className="ticket-card">
-      <h3>{ticket.eventName}</h3>
-      <p>{ticket.description}</p>
-      <p>Location: {ticket.location}</p>
-      <p>Date & Time: {formatDateTime(ticket.dateTime)}</p>
-      <p>Price: ${ticket.price}</p>
-      <div className="details-button">
-        <button onClick={handleViewDetails}> See Details </button>
+  return ticket.buyerId ? (
+    <>
+      <section>
+        <h3>{ticket.eventName}</h3>
+        <p>{ticket.description}</p>
+        <p>Location: {ticket.location}</p>
+        <h2>Sold to User#{ticket.buyerId}</h2>
+      </section>
+    </>
+  ) : (
+    <>
+      <div className="ticket-card">
+        <h3>{ticket.eventName}</h3>
+        <p>{ticket.description}</p>
+        <p>Location: {ticket.location}</p>
+        <p>Date & Time: {formatDateTime(ticket.dateTime)}</p>
+        <p>Price: ${ticket.price}</p>
+        <div className="details-button">
+          <button onClick={handleViewDetails}> See Details </button>
+        </div>
       </div>
-      <div className="buy-button">
-        <button onClick={handleBuy}>Buy Ticket</button>
-      </div>
-    </div>
+    </>
   );
 }
 

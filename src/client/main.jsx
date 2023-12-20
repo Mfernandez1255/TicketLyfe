@@ -16,6 +16,7 @@ import TicketDetails from "./features/tickets/TicketDetails.jsx";
 import Users from "./features/users/Users.jsx";
 import UserProfile from "./features/users/UserProfile.jsx";
 import UserSellingList from "./features/users/UserSellingList.jsx";
+import TicketUpdate from "./features/tickets/TicketUpdate.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
       { path: "/users", element: <Users /> },
       { path: "/users/:id", element: <UserProfile /> },
       { path: "/users/:id/sold", element: <UserSellingList /> },
+      { path: "/ticket/:id/buy", element: <TicketUpdate /> },
       { path: "/tasks", element: <Tasks /> },
       { path: "/login", element: <AuthForm /> },
     ],
